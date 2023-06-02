@@ -169,13 +169,11 @@ const Home: NextPage = () => {
               try {
                 setIsProcessing(true);
 
-                console.log("hoho");
                 resp = await recordInterest({
                   name: data.name,
                   email: data.email,
                 });
-                console.log("hehe");
-                console.log(data);
+
                 reset();
                 setIsProcessed(resp.isSuccess);
                 setIsRateLimited(resp.reason === "rate limited");

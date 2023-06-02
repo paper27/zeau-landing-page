@@ -21,10 +21,11 @@ import { ZodError } from "zod";
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
 
-type CreateContextOptions = {
-  req: NextApiRequest;
-  res: NextApiResponse;
-};
+// type CreateContextOptions = {
+//   req: NextApiRequest;
+//   res: NextApiResponse;
+// };
+type CreateContextOptions = Record<string, never>;
 
 /**
  * This helper generates the "internals" for a tRPC context. If you need to use it, you can export
@@ -38,8 +39,8 @@ type CreateContextOptions = {
  */
 const createInnerTRPCContext = (_opts: CreateContextOptions) => {
   return {
-    req: _opts.req,
-    res: _opts.res,
+    // req: _opts.req,
+    // res: _opts.res,
   };
 };
 
@@ -51,8 +52,8 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
  */
 export const createTRPCContext = (_opts: CreateNextContextOptions) => {
   return createInnerTRPCContext({
-    req: _opts.req,
-    res: _opts.res,
+    // req: _opts.req,
+    // res: _opts.res,
   });
 };
 
