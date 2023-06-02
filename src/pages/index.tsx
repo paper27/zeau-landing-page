@@ -166,6 +166,7 @@ const Home: NextPage = () => {
           // eslint-disable-next-line
           onSubmit={handleSubmit(
             async (data) => {
+              console.log("submit");
               let resp;
               try {
                 setIsProcessing(true);
@@ -187,6 +188,7 @@ const Home: NextPage = () => {
               }
             },
             () => {
+              console.error("ERR");
               setIsProcessed(false);
               setIsRateLimited(false);
               setIsProcessing(false);
