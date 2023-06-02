@@ -8,7 +8,6 @@
  */
 
 import { initTRPC } from "@trpc/server";
-import { type NextApiRequest, type NextApiResponse } from "next";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
@@ -21,10 +20,6 @@ import { ZodError } from "zod";
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
 
-// type CreateContextOptions = {
-//   req: NextApiRequest;
-//   res: NextApiResponse;
-// };
 type CreateContextOptions = Record<string, never>;
 
 /**
@@ -38,10 +33,7 @@ type CreateContextOptions = Record<string, never>;
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
 const createInnerTRPCContext = (_opts: CreateContextOptions) => {
-  return {
-    // req: _opts.req,
-    // res: _opts.res,
-  };
+  return {};
 };
 
 /**
@@ -51,10 +43,7 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = (_opts: CreateNextContextOptions) => {
-  return createInnerTRPCContext({
-    // req: _opts.req,
-    // res: _opts.res,
-  });
+  return createInnerTRPCContext({});
 };
 
 /**
