@@ -335,7 +335,7 @@ const Home: NextPage = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                window.open("https://app.zeau.space/", "_blank", "noopener");
+                window.open("https://zeau.space/", "_blank", "noopener");
               }}
               sx={{ textTransform: "none", fontWeight: "bold" }}
             >
