@@ -164,7 +164,7 @@ const Home: NextPage = () => {
         <form
           // eslint-disable-next-line
           onSubmit={handleSubmit(
-            async (data) => {
+            (data) => {
               console.log("submit");
               let resp;
               try {
@@ -178,9 +178,9 @@ const Home: NextPage = () => {
                 console.log("hehe");
                 console.log(data);
                 reset();
-                setIsProcessed(resp.isSuccess);
-                setIsRateLimited(resp.reason === "rate limited");
-                setIsInternalError(resp.reason === "submit error");
+                // setIsProcessed(resp.isSuccess);
+                // setIsRateLimited(resp.reason === "rate limited");
+                // setIsInternalError(resp.reason === "submit error");
                 setIsProcessing(false);
               } catch (error) {
                 console.error(error);
