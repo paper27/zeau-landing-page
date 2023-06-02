@@ -34,5 +34,5 @@ export const rateLimit = (options?: Options) => {
 }; // ref: https://github.com/vercel/next.js/tree/canary/examples/api-routes-rate-limit
 
 export const getFormattedGCPPrivateKey = (key: string) => {
-  return key.replace(/\n/g, "\n"); // ref: https://stackoverflow.com/a/41044630
+  return key.replace(/\\n/g, "\n"); // ref: https://stackoverflow.com/a/41044630
 };
