@@ -164,23 +164,23 @@ const Home: NextPage = () => {
         <form
           // eslint-disable-next-line
           onSubmit={handleSubmit(
-            (data) => {
+            async (data) => {
               console.log("submit");
               let resp;
               try {
                 setIsProcessing(true);
 
                 console.log("hoho");
-                // resp = await recordInterest({
-                //   name: data.name,
-                //   email: data.email,
-                // });
-                console.log("hehe");
+                resp = await recordInterest({
+                  name: data.name,
+                  email: data.email,
+                });
+                console.log("hehe", resp);
                 console.log(data);
                 reset();
-                // setIsProcessed(resp.isSuccess);
-                // setIsRateLimited(resp.reason === "rate limited");
-                // setIsInternalError(resp.reason === "submit error");
+                setIsProcessed(resp.isSuccess);
+                setIsRateLimited(resp.reason === "rate limited");
+                setIsInternalError(resp.reason === "submit error");
                 setIsProcessing(false);
               } catch (error) {
                 console.error(error);

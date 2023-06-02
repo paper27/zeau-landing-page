@@ -15,7 +15,7 @@ export const collectRouter = createTRPCRouter({
   recordInterest: publicProcedure
     .input(
       z.object({
-        name: z.string(),
+        name: z.string().nonempty("Name is required").min(1).max(50),
         email: z.string().email(),
       })
     )
