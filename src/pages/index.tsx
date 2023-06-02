@@ -98,7 +98,7 @@ const Home: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-    getValues,
+    // getValues,
     // setValue,
     // clearErrors,
   } = useForm<FormValues>({
@@ -164,37 +164,36 @@ const Home: NextPage = () => {
         <form
           // eslint-disable-next-line
           onSubmit={handleSubmit(
-            (data) => {
-              console.log("submit");
-              //   let resp;
-              //   try {
-              //     setIsProcessing(true);
+            async (data) => {
+              let resp;
+              try {
+                setIsProcessing(true);
 
-              //     console.log("hoho");
-              //     const resp = await recordInterest({
-              //       name: data.name,
-              //       email: data.email,
-              //     });
-              //     console.log("hehe", resp);
-              //     console.log(data);
-              //     reset();
-              //     setIsProcessed(resp.isSuccess);
-              //     setIsRateLimited(resp.reason === "rate limited");
-              //     setIsInternalError(resp.reason === "submit error");
-              //     setIsProcessing(false);
-              //   } catch (error) {
-              //     console.error(error);
-              //     setIsProcessed(false);
-              //     setIsRateLimited(false);
-              //     setIsProcessing(false);
-              //   }
+                console.log("hoho");
+                resp = await recordInterest({
+                  name: data.name,
+                  email: data.email,
+                });
+                console.log("hehe");
+                console.log(data);
+                reset();
+                setIsProcessed(resp.isSuccess);
+                setIsRateLimited(resp.reason === "rate limited");
+                setIsInternalError(resp.reason === "submit error");
+                setIsProcessing(false);
+              } catch (error) {
+                console.error(error);
+                setIsProcessed(false);
+                setIsRateLimited(false);
+                setIsProcessing(false);
+              }
+            },
+            () => {
+              console.error("ERR");
+              setIsProcessed(false);
+              setIsRateLimited(false);
+              setIsProcessing(false);
             }
-            // () => {
-            //   console.error("ERR");
-            //   setIsProcessed(false);
-            //   setIsRateLimited(false);
-            //   setIsProcessing(false);
-            // }
           )}
           style={{ width: "100%" }}
         >
@@ -307,37 +306,9 @@ const Home: NextPage = () => {
 
               <Button
                 fullWidth
-                // type="submit"
+                type="submit"
                 variant="contained"
                 disabled={isProcessing || isProcessed}
-                // eslint-disable-next-line
-                onClick={async () => {
-                  await recordInterest({
-                    name: getValues("name"),
-                    email: getValues("email"),
-                  });
-                  //   try {
-                  //     setIsProcessing(true);
-
-                  //     console.log("hoho");
-                  //     const resp = await recordInterest({
-                  //       name: getValues("name"),
-                  //       email: getValues("email"),
-                  //     });
-                  //     console.log("hehe", resp);
-                  //     console.log(data);
-                  //     reset();
-                  //     setIsProcessed(resp.isSuccess);
-                  //     setIsRateLimited(resp.reason === "rate limited");
-                  //     setIsInternalError(resp.reason === "submit error");
-                  //     setIsProcessing(false);
-                  //   } catch (error) {
-                  //     console.error(error);
-                  //     setIsProcessed(false);
-                  //     setIsRateLimited(false);
-                  //     setIsProcessing(false);
-                  //   }
-                }}
                 sx={{ textTransform: "none", fontWeight: "bold" }}
               >
                 Submit
