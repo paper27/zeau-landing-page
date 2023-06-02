@@ -20,11 +20,11 @@ export const collectRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      //   try {
-      //     await limiter.check(ctx.res, MAX_REQUESTS_PER_INTERVAL, "CACHE_TOKEN");
-      //   } catch (error) {
-      //     return { isSuccess: false, reason: "rate limited" };
-      //   }
+      try {
+        await limiter.check(ctx.res, MAX_REQUESTS_PER_INTERVAL, "CACHE_TOKEN");
+      } catch (error) {
+        return { isSuccess: false, reason: "rate limited" };
+      }
 
       try {
         // NOTE: to use google sheets API, enable it in GCP and share permission to GCP service email (GCP_CLIENT_EMAIL)

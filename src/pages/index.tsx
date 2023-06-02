@@ -19,7 +19,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import zeausm from "~/assets/zeau-sm-crop.png";
-import img1 from "~/assets/img1.jpg";
 import img2 from "~/assets/img2.jpg";
 import img3 from "~/assets/img3.jpg";
 import img4 from "~/assets/img4.jpg";
@@ -32,9 +31,9 @@ const iconSun = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     // class="lucide lucide-sun"
   >
     <circle cx="12" cy="12" r="4"></circle>
@@ -57,9 +56,9 @@ const iconMoon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     // class="lucide lucide-moon"
   >
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
