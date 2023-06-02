@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image, { type StaticImageData } from "next/image";
-import Link from "next/link";
 import { api } from "~/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
