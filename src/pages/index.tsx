@@ -80,7 +80,7 @@ const Home: NextPage = () => {
   const { isDark, toggleColorScheme } = useTheme();
   const { isBelowSlim } = useScreenSize();
 
-  const ref = useRef(null);
+  const ref = useRef<null | HTMLDivElement>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isProcessed, setIsProcessed] = useState<boolean>(false);
   const [isRateLimited, setIsRateLimited] = useState<boolean>(false);
