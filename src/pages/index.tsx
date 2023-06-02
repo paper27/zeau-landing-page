@@ -178,9 +178,9 @@ const Home: NextPage = () => {
                 console.log("hehe", resp);
                 console.log(data);
                 reset();
-                setIsProcessed(resp.isSuccess);
-                setIsRateLimited(resp.reason === "rate limited");
-                setIsInternalError(resp.reason === "submit error");
+                // setIsProcessed(resp.isSuccess);
+                // setIsRateLimited(resp.reason === "rate limited");
+                // setIsInternalError(resp.reason === "submit error");
                 setIsProcessing(false);
               } catch (error) {
                 console.error(error);

@@ -25,7 +25,7 @@ export const collectRouter = createTRPCRouter({
       //   } catch (error) {
       //     return { isSuccess: false, reason: "rate limited" };
       //   }
-      return { isSuccess: false, reason: "hoho" };
+      return "yaya";
       //   try {
       //     // NOTE: to use google sheets API, enable it in GCP and share permission to GCP service email (GCP_CLIENT_EMAIL)
       //     // ref: https://www.youtube.com/watch?v=7N0OcQZFm3Q
