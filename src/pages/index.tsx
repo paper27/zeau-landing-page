@@ -328,6 +328,16 @@ const Home: NextPage = () => {
               </Typography>
             </Stack>
 
+            <Button
+              variant="outlined"
+              onClick={() => {
+                window.open("https://app.zeau.space/", "_blank", "noopener");
+              }}
+              sx={{ textTransform: "none", fontWeight: "bold" }}
+            >
+              Try our demo
+            </Button>
+
             <Box sx={{ p: 15 }}></Box>
           </Stack>
         </form>
