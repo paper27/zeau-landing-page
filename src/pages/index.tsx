@@ -177,7 +177,7 @@ const Home: NextPage = () => {
               });
               console.log("hehe", resp);
               console.log(data);
-              reset();
+              //   reset();
               // setIsProcessed(resp.isSuccess);
               // setIsRateLimited(resp.reason === "rate limited");
               // setIsInternalError(resp.reason === "submit error");
