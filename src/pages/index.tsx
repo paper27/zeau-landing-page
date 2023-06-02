@@ -171,10 +171,10 @@ const Home: NextPage = () => {
                 setIsProcessing(true);
 
                 console.log("hoho");
-                resp = await recordInterest({
-                  name: data.name,
-                  email: data.email,
-                });
+                // resp = await recordInterest({
+                //   name: data.name,
+                //   email: data.email,
+                // });
                 console.log("hehe");
                 console.log(data);
                 reset();
