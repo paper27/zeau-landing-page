@@ -166,35 +166,35 @@ const Home: NextPage = () => {
           onSubmit={handleSubmit(
             async (data) => {
               console.log("submit");
-              let resp;
-              try {
-                setIsProcessing(true);
+              //   let resp;
+              //   try {
+              setIsProcessing(true);
 
-                console.log("hoho");
-                resp = await recordInterest({
-                  name: data.name,
-                  email: data.email,
-                });
-                console.log("hehe", resp);
-                console.log(data);
-                reset();
-                // setIsProcessed(resp.isSuccess);
-                // setIsRateLimited(resp.reason === "rate limited");
-                // setIsInternalError(resp.reason === "submit error");
-                setIsProcessing(false);
-              } catch (error) {
-                console.error(error);
-                setIsProcessed(false);
-                setIsRateLimited(false);
-                setIsProcessing(false);
-              }
-            },
-            () => {
-              console.error("ERR");
-              setIsProcessed(false);
-              setIsRateLimited(false);
+              console.log("hoho");
+              const resp = await recordInterest({
+                name: data.name,
+                email: data.email,
+              });
+              console.log("hehe", resp);
+              console.log(data);
+              reset();
+              // setIsProcessed(resp.isSuccess);
+              // setIsRateLimited(resp.reason === "rate limited");
+              // setIsInternalError(resp.reason === "submit error");
               setIsProcessing(false);
+              //   } catch (error) {
+              //     console.error(error);
+              //     setIsProcessed(false);
+              //     setIsRateLimited(false);
+              //     setIsProcessing(false);
+              //   }
             }
+            // () => {
+            //   console.error("ERR");
+            //   setIsProcessed(false);
+            //   setIsRateLimited(false);
+            //   setIsProcessing(false);
+            // }
           )}
           style={{ width: "100%" }}
         >
