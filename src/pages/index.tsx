@@ -78,7 +78,7 @@ const Home: NextPage = () => {
   const { isDark, toggleColorScheme } = useTheme();
   const { isBelowSlim } = useScreenSize();
 
-  const ref = useRef<null | HTMLDivElement>(null);
+  //   const ref = useRef<null | HTMLDivElement>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isProcessed, setIsProcessed] = useState<boolean>(false);
   const [isRateLimited, setIsRateLimited] = useState<boolean>(false);
@@ -160,7 +160,7 @@ const Home: NextPage = () => {
           </IconButton>
         </Stack>
 
-        <form
+        {/* <form
           // eslint-disable-next-line
           onSubmit={handleSubmit(
             async (data) => {
@@ -193,87 +193,112 @@ const Home: NextPage = () => {
             }
           )}
           style={{ width: "100%" }}
+        > */}
+        <Stack
+          alignItems="center"
+          justifyContent="center"
+          spacing={30}
+          sx={{ width: "100%" }}
         >
+          <Block>
+            <>
+              <ContentDetails>
+                <Stack spacing={1}>
+                  <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+                    Make money while you livestream
+                  </Typography>
+                  <Typography>
+                    Our innovative payment structure ensures that every second
+                    counts.
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    // eslint-disable-next-line
+                    onClick={() => {
+                      window.open(
+                        "https://twitter.com/zeauspace?ref_src=twsrc%5Etfw",
+                        "_blank",
+                        "noopener"
+                      );
+                    }}
+                    sx={{ textTransform: "none", fontWeight: "bold" }}
+                  >
+                    Stay informed
+                  </Button>
+                </Stack>
+              </ContentDetails>
+              <StockImage src={img2} />
+            </>
+          </Block>
+
+          {isBelowSlim ? (
+            <Block>
+              <>
+                {content1}
+                <StockImage src={img3} />
+              </>
+            </Block>
+          ) : (
+            <Block>
+              <>
+                <StockImage src={img3} />
+                {content1}
+              </>
+            </Block>
+          )}
+
+          <Block>
+            <>
+              <ContentDetails>
+                <Stack spacing={1}>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                    Viewers save more
+                  </Typography>
+                  <Typography>
+                    Viewers pay less overall while still supporting their
+                    favorite livestreamers.
+                  </Typography>
+                </Stack>
+              </ContentDetails>
+              <StockImage src={img4} />
+            </>
+          </Block>
+
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            Powered by Web 3.0
+          </Typography>
+
           <Stack
+            // ref={ref}
+            direction="row"
             alignItems="center"
             justifyContent="center"
-            spacing={30}
-            sx={{ width: "100%" }}
+            spacing={1}
+            sx={{ width: isBelowSlim ? "100%" : "50%", pt: 2 }}
           >
-            <Block>
-              <>
-                <ContentDetails>
-                  <Stack spacing={1}>
-                    <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-                      Make money while you livestream
-                    </Typography>
-                    <Typography>
-                      Our innovative payment structure ensures that every second
-                      counts.
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      // eslint-disable-next-line
-                      onClick={() => ref?.current?.scrollIntoView()}
-                      sx={{ textTransform: "none", fontWeight: "bold" }}
-                    >
-                      Stay informed
-                    </Button>
-                  </Stack>
-                </ContentDetails>
-                <StockImage src={img2} />
-              </>
-            </Block>
-
-            {isBelowSlim ? (
-              <Block>
-                <>
-                  {content1}
-                  <StockImage src={img3} />
-                </>
-              </Block>
-            ) : (
-              <Block>
-                <>
-                  <StockImage src={img3} />
-                  {content1}
-                </>
-              </Block>
-            )}
-
-            <Block>
-              <>
-                <ContentDetails>
-                  <Stack spacing={1}>
-                    <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                      Viewers save more
-                    </Typography>
-                    <Typography>
-                      Viewers pay less overall while still supporting their
-                      favorite livestreamers.
-                    </Typography>
-                  </Stack>
-                </ContentDetails>
-                <StockImage src={img4} />
-              </>
-            </Block>
-
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-              Powered by Web 3.0
-            </Typography>
-
-            <Stack
-              ref={ref}
-              alignItems="center"
-              justifyContent="center"
-              spacing={1}
-              sx={{ width: isBelowSlim ? "100%" : "50%", pt: 2 }}
+            <Button
+              variant="contained"
+              onClick={() => {
+                window.open(
+                  "https://twitter.com/zeauspace?ref_src=twsrc%5Etfw",
+                  "_blank",
+                  "noopener"
+                );
+              }}
+              sx={{ textTransform: "none", fontWeight: "bold" }}
             >
-              <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-                Stay informed
-              </Typography>
-
-              <Controller
+              Stay informed
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                window.open("https://app.zeau.space/", "_blank", "noopener");
+              }}
+              sx={{ textTransform: "none", fontWeight: "bold" }}
+            >
+              Try our demo
+            </Button>
+            {/* <Controller
                 name="name"
                 control={control}
                 render={({ field }) => (
@@ -309,9 +334,9 @@ const Home: NextPage = () => {
                 sx={{ textTransform: "none", fontWeight: "bold" }}
               >
                 Submit
-              </Button>
+              </Button> */}
 
-              <Typography color="error" sx={{ fontWeight: "bold" }}>
+            {/* <Typography color="error" sx={{ fontWeight: "bold" }}>
                 {!isProcessing &&
                   !isProcessed &&
                   (isRateLimited
@@ -325,22 +350,12 @@ const Home: NextPage = () => {
                     Interest Registered!
                   </Typography>
                 )}
-              </Typography>
-            </Stack>
-
-            <Button
-              variant="outlined"
-              onClick={() => {
-                window.open("https://zeau.space/", "_blank", "noopener");
-              }}
-              sx={{ textTransform: "none", fontWeight: "bold" }}
-            >
-              Try our demo
-            </Button>
-
-            <Box sx={{ p: 15 }}></Box>
+              </Typography> */}
           </Stack>
-        </form>
+
+          <Box sx={{ p: 15 }}></Box>
+        </Stack>
+        {/* </form> */}
       </Stack>
     </Stack>
   );
