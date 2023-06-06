@@ -1,20 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image, { type StaticImageData } from "next/image";
-import { api } from "~/utils/api";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 
-import { useForm, Controller } from "react-hook-form";
-import { useState, useRef } from "react";
-import { useTheme } from "~/contexts/Theme";
 import useScreenSize from "~/hooks/useScreenSize";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import zeausm from "~/assets/zeau-sm-crop.png";
@@ -22,91 +14,57 @@ import img2 from "~/assets/img2.jpg";
 import img3 from "~/assets/img3.jpg";
 import img4 from "~/assets/img4.jpg";
 
-const iconSun = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    // class="lucide lucide-sun"
-  >
-    <circle cx="12" cy="12" r="4"></circle>
-    <path d="M12 2v2"></path>
-    <path d="M12 20v2"></path>
-    <path d="m4.93 4.93 1.41 1.41"></path>
-    <path d="m17.66 17.66 1.41 1.41"></path>
-    <path d="M2 12h2"></path>
-    <path d="M20 12h2"></path>
-    <path d="m6.34 17.66-1.41 1.41"></path>
-    <path d="m19.07 4.93-1.41 1.41"></path>
-  </svg>
-);
+import { PRIMARY_COLOR } from "~/contexts/Theme";
 
-const iconMoon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    // class="lucide lucide-moon"
-  >
-    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-  </svg>
-);
+// const iconSun = (
+//   <svg
+//     xmlns="http://www.w3.org/2000/svg"
+//     width="24"
+//     height="24"
+//     viewBox="0 0 24 24"
+//     fill="none"
+//     stroke="currentColor"
+//     strokeWidth="2"
+//     strokeLinecap="round"
+//     strokeLinejoin="round"
+//     // class="lucide lucide-sun"
+//   >
+//     <circle cx="12" cy="12" r="4"></circle>
+//     <path d="M12 2v2"></path>
+//     <path d="M12 20v2"></path>
+//     <path d="m4.93 4.93 1.41 1.41"></path>
+//     <path d="m17.66 17.66 1.41 1.41"></path>
+//     <path d="M2 12h2"></path>
+//     <path d="M20 12h2"></path>
+//     <path d="m6.34 17.66-1.41 1.41"></path>
+//     <path d="m19.07 4.93-1.41 1.41"></path>
+//   </svg>
+// );
+
+// const iconMoon = (
+//   <svg
+//     xmlns="http://www.w3.org/2000/svg"
+//     width="24"
+//     height="24"
+//     viewBox="0 0 24 24"
+//     fill="none"
+//     stroke="currentColor"
+//     strokeWidth="2"
+//     strokeLinecap="round"
+//     strokeLinejoin="round"
+//     // class="lucide lucide-moon"
+//   >
+//     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+//   </svg>
+// );
 
 const HEIGHT_BLOCK = 250;
 const WIDTH_CONTENT = 600;
 const IMAGE_WIDTH = 400;
 const IMAGE_HEIGHT = 250;
 
-type FormValues = {
-  name: string;
-  email: string;
-};
-
 const Home: NextPage = () => {
-  const { isDark, toggleColorScheme } = useTheme();
   const { isBelowSlim } = useScreenSize();
-
-  //   const ref = useRef<null | HTMLDivElement>(null);
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [isProcessed, setIsProcessed] = useState<boolean>(false);
-  const [isRateLimited, setIsRateLimited] = useState<boolean>(false);
-  const [isInternalError, setIsInternalError] = useState<boolean>(false);
-
-  const { mutateAsync: recordInterest } =
-    api.collect.recordInterest.useMutation();
-
-  const schema = z.object({
-    name: z.string().nonempty("Name is required").min(1).max(50),
-    email: z.string().email(),
-  });
-
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors },
-    // getValues,
-    // setValue,
-    // clearErrors,
-  } = useForm<FormValues>({
-    defaultValues: {
-      name: "",
-      email: "",
-    },
-    resolver: zodResolver(schema),
-  });
 
   const content1 = (
     <ContentDetails>
@@ -135,7 +93,14 @@ const Home: NextPage = () => {
   //   );
 
   return (
-    <Stack alignItems="center" justifyContent="center" sx={{ width: "100%" }}>
+    <Stack
+      alignItems="center"
+      justifyContent="center"
+      sx={{
+        width: "100%",
+        backgroundImage: "linear-gradient(#1D4350 0%, #A43931 100%)", // ref: https://uigradients.com/
+      }}
+    >
       <Head>
         <title>zeau space</title>
         <meta name="description" content="Web3 Livestreaming" />
@@ -155,49 +120,15 @@ const Home: NextPage = () => {
           sx={{ width: "100%" }}
         >
           <Image alt="" src={zeausm} priority />
-          <IconButton onClick={toggleColorScheme}>
+          {/* <IconButton onClick={toggleColorScheme}>
             {isDark ? iconMoon : iconSun}
-          </IconButton>
+          </IconButton> */}
         </Stack>
 
-        {/* <form
-          // eslint-disable-next-line
-          onSubmit={handleSubmit(
-            async (data) => {
-              let resp;
-              try {
-                setIsProcessing(true);
-
-                resp = await recordInterest({
-                  name: data.name,
-                  email: data.email,
-                });
-
-                reset();
-                setIsProcessed(resp.isSuccess);
-                setIsRateLimited(resp.reason === "rate limited");
-                setIsInternalError(resp.reason === "submit error");
-                setIsProcessing(false);
-              } catch (error) {
-                console.error(error);
-                setIsProcessed(false);
-                setIsRateLimited(false);
-                setIsProcessing(false);
-              }
-            },
-            () => {
-              console.error("ERR");
-              setIsProcessed(false);
-              setIsRateLimited(false);
-              setIsProcessing(false);
-            }
-          )}
-          style={{ width: "100%" }}
-        > */}
         <Stack
           alignItems="center"
           justifyContent="center"
-          spacing={30}
+          spacing={20}
           sx={{ width: "100%" }}
         >
           <Block>
@@ -211,20 +142,48 @@ const Home: NextPage = () => {
                     Our innovative payment structure ensures that every second
                     counts.
                   </Typography>
-                  <Button
-                    variant="contained"
-                    // eslint-disable-next-line
-                    onClick={() => {
-                      window.open(
-                        "https://twitter.com/zeauspace?ref_src=twsrc%5Etfw",
-                        "_blank",
-                        "noopener"
-                      );
-                    }}
-                    sx={{ textTransform: "none", fontWeight: "bold" }}
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={2}
                   >
-                    Stay informed
-                  </Button>
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      // eslint-disable-next-line
+                      onClick={() => {
+                        window.open(
+                          "https://twitter.com/zeauspace?ref_src=twsrc%5Etfw",
+                          "_blank",
+                          "noopener"
+                        );
+                      }}
+                      sx={{
+                        textTransform: "none",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Stay informed
+                    </Button>
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      onClick={() => {
+                        window.open(
+                          "https://app.zeau.space/",
+                          "_blank",
+                          "noopener"
+                        );
+                      }}
+                      sx={{
+                        textTransform: "none",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Try our demo
+                    </Button>
+                  </Stack>
                 </Stack>
               </ContentDetails>
               <StockImage src={img2} />
@@ -264,98 +223,48 @@ const Home: NextPage = () => {
             </>
           </Block>
 
-          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            Powered by Web 3.0
-          </Typography>
-
           <Stack
-            // ref={ref}
-            direction="row"
             alignItems="center"
             justifyContent="center"
-            spacing={1}
-            sx={{ width: isBelowSlim ? "100%" : "50%", pt: 2 }}
+            sx={{ width: "100%" }}
           >
-            <Button
-              variant="contained"
-              onClick={() => {
-                window.open(
-                  "https://twitter.com/zeauspace?ref_src=twsrc%5Etfw",
-                  "_blank",
-                  "noopener"
-                );
-              }}
-              sx={{ textTransform: "none", fontWeight: "bold" }}
+            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+              Powered by Web 3.0
+            </Typography>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              spacing={1}
+              sx={{ width: isBelowSlim ? "100%" : "50%", pt: 2 }}
             >
-              Stay informed
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                window.open("https://app.zeau.space/", "_blank", "noopener");
-              }}
-              sx={{ textTransform: "none", fontWeight: "bold" }}
-            >
-              Try our demo
-            </Button>
-            {/* <Controller
-                name="name"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Name"
-                    {...field}
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
-                  />
-                )}
-              />
-
-              <Controller
-                name="email"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Email"
-                    {...field}
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
-                  />
-                )}
-              />
-
               <Button
-                fullWidth
-                type="submit"
                 variant="contained"
-                disabled={isProcessing || isProcessed}
+                onClick={() => {
+                  window.open(
+                    "https://twitter.com/zeauspace?ref_src=twsrc%5Etfw",
+                    "_blank",
+                    "noopener"
+                  );
+                }}
                 sx={{ textTransform: "none", fontWeight: "bold" }}
               >
-                Submit
-              </Button> */}
-
-            {/* <Typography color="error" sx={{ fontWeight: "bold" }}>
-                {!isProcessing &&
-                  !isProcessed &&
-                  (isRateLimited
-                    ? "Please try again later"
-                    : isInternalError
-                    ? "An error occured while submitting, please try again."
-                    : "")}
-
-                {isProcessed && (
-                  <Typography color="green" sx={{ fontWeight: "bold" }}>
-                    Interest Registered!
-                  </Typography>
-                )}
-              </Typography> */}
+                Stay informed
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  window.open("https://app.zeau.space/", "_blank", "noopener");
+                }}
+                sx={{ textTransform: "none", fontWeight: "bold" }}
+              >
+                Try our demo
+              </Button>
+            </Stack>
           </Stack>
 
           <Box sx={{ p: 15 }}></Box>
         </Stack>
-        {/* </form> */}
       </Stack>
     </Stack>
   );

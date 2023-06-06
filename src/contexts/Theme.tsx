@@ -70,13 +70,13 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
         mode: colorScheme,
         ...(colorScheme === LIGHT
           ? {
-              background: {
-                paper: "#F0F1F5",
-                default: "#F0F1F5",
-              },
-              backgroundTwo: {
-                main: "#FFFFFF",
-              },
+              //   background: {
+              //     paper: "#F0F1F5",
+              //     default: "#F0F1F5",
+              //   },
+              //   backgroundTwo: {
+              //     main: "#FFFFFF",
+              //   },
               //   primaryLighter: {
               //     main: "#F384DF",
               //   },
@@ -84,13 +84,13 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
               ...themeColors,
             }
           : {
-              background: {
-                paper: "#22272E",
-                default: "#22272E",
-              },
-              backgroundTwo: {
-                main: "#2D333B",
-              },
+              //   background: {
+              //     paper: "#22272E",
+              //     default: "#22272E",
+              //   },
+              //   backgroundTwo: {
+              //     main: "#2D333B",
+              //   },
               //   primaryLighter: {
               //     main: "#8F2A5F", // #F5C3DC
               //   },
@@ -98,6 +98,16 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
             }),
       },
       shadows: Array(25).fill("none") as Shadows,
+      //   components: {
+      //     MuiCssBaseline: {
+      //       styleOverrides: {
+      //         body: {
+      //           //   backgroundColor: #FAACA8,
+      //           backgroundImage: `linear-gradient(#FAACA8 0%, #DDD6F3 100%)`,
+      //         },
+      //       },
+      //     },
+      //   },
     });
   }, []);
 
